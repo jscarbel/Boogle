@@ -1,10 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import BoardContainer from "./components/BoardContainer";
 
 function App() {
   return (
     <div className="App">
-     <h1>Hello!</h1>
+      <BoardContainer>
+        <h1>Hello!</h1>
+      </BoardContainer>
     </div>
   );
 }
