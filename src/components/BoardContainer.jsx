@@ -15,7 +15,7 @@ const BoardContainer = () => {
       timer = setInterval(() => {
         setTime((prevTime) => {
           if (prevTime >= MAX_TIME) {
-            clearInterval(timer); // Stop the timer after 60 seconds
+            clearInterval(timer);
             setIsTiming(false);
             return MAX_TIME;
           }
