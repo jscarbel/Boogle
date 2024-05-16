@@ -29,18 +29,6 @@ const BoardContainer = () => {
     return () => clearInterval(timer);
   }, [isTiming]);
 
-  // useEffect(() => {
-  //   if (isTiming) {
-  //     timer = setInterval(() => {
-  //       setTime((time) => time + 1);
-  //     }, MILLISECONDS_IN_A_SECOND);
-  //   } else {
-  //     clearInterval(timer);
-  //     setTime(0);
-  //   }
-  //   return () => clearInterval(timer);
-  // }, [isTiming]);
-
   const handleTimerChange = () => setIsTiming(!isTiming);
 
   const timerLabel = isTiming ? "stop" : "start";
