@@ -18,24 +18,36 @@ const DICE = [
 ];
 
 export const shuffleDice = () => {
-  for (let i = DICE.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+  for (let currentIndex = DICE.length - 1; currentIndex > 0; currentIndex--) {
+    const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
     // save the values of the two references
-    const firstValue = DICE[i];
-    const secondValue = DICE[j];
+    const firstValue = DICE[currentIndex];
+    const secondValue = DICE[randomIndex];
 
     // swap the values
-    DICE[i] = secondValue;
-    DICE[j] = firstValue;
+    DICE[currentIndex] = secondValue;
+    DICE[randomIndex] = firstValue;
   }
 };
 
 export const getRandomLetterFromDice = (diceRow) => {
-  const randomIndex = Math.floor(Math.random() * diceRow.length);
-  return diceRow[randomIndex];
+  const randomRowIndex = Math.floor(Math.random() * diceRow.length);
+  return diceRow[randomRowIndex];
 };
 
 export const generateBoard = () => {
   shuffleDice();
-  return DICE.map((diceRow) => getRandomLetterFromDice(diceRow));
+  const board = [];
+  let diceIndex = 0;
+
+  for (let row = 0; row < 4; row++) {
+    const diceRow = [];
+    for (let col = 0; col < 4; col++) {
+      diceRow.push(getRandomLetterFromDice(DICE[diceIndex]));
+      diceIndex++;
+    }
+    board.push(diceRow);
+  }
+  return board;
+  // return DICE.map((diceRow) => getRandomLetterFromDice(diceRow));
 };
