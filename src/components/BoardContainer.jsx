@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import TimerButton from "./TimerButton";
-import { generateBoard } from "./DiceGenerator";
-
+import { generateBoard } from "../scripts/diceGenerator";
+import DiceGrid from "./DiceGrid";
 const MILLISECONDS_IN_A_SECOND = 1000;
 const MAX_TIME = 60;
 
 const BoardContainer = () => {
   const [time, setTime] = useState(0);
   const [isTiming, setIsTiming] = useState(false);
-  const [board, setBoard] = useState(generateBoard());
+  const [boardLetters, setBoardLetters] = useState(generateBoard());
 
   let timer = null;
 
@@ -34,7 +34,7 @@ const BoardContainer = () => {
   const handleTimerChange = () => {
     setIsTiming(!isTiming);
     if (!isTiming) {
-      setBoard(generateBoard());
+      setBoardLetters(generateBoard());
     }
   };
 
@@ -46,11 +46,7 @@ const BoardContainer = () => {
       <h3>Current time: {time}</h3>
       <TimerButton onClick={handleTimerChange} label={timerLabel} />
       <div className="board">
-        {board.map((letter, index) => (
-          <div key={index} className="board-tile">
-            {letter}
-          </div>
-        ))}
+        <DiceGrid letters={boardLetters} />
       </div>
     </div>
   );

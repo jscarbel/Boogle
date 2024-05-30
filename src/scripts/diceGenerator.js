@@ -17,7 +17,7 @@ const DICE = [
   "HLNNRZ",
 ];
 
-export const shuffleDice = () => {
+const shuffleDice = () => {
   for (let currentIndex = DICE.length - 1; currentIndex > 0; currentIndex--) {
     const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
     // save the values of the two references
@@ -30,7 +30,7 @@ export const shuffleDice = () => {
   }
 };
 
-export const getRandomLetterFromDice = (diceRow) => {
+const getRandomLetterFromDice = (diceRow) => {
   const randomRowIndex = Math.floor(Math.random() * diceRow.length);
   return diceRow[randomRowIndex];
 };
@@ -49,5 +49,4 @@ export const generateBoard = () => {
     board.push(diceRow);
   }
   return board;
-  // return DICE.map((diceRow) => getRandomLetterFromDice(diceRow));
 };

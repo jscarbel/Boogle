@@ -43,3 +43,17 @@
     transform: rotate(360deg);
   }
 }
+
+.dice {
+  width: 50px; /* Adjust the size as needed */
+  height: 50px; /* Adjust the size as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px; /* Adjust the font size as needed */
+  border: 2px solid #000;
+  border-radius: 8px; /* To give it a slight rounded edge */
+  background-color: #fff;
+  margin: 10px; /* Margin for spacing between dice */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: to give a slight shadow effect */
+}
