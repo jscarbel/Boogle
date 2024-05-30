@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import TimerButton from "./TimerButton";
 import { generateBoard } from "../scripts/diceGenerator";
-import DiceGrid from "./DiceGrid";
+import { DiceGrid } from "./DiceGrid";
+
 const MILLISECONDS_IN_A_SECOND = 1000;
 const MAX_TIME = 60;
 
