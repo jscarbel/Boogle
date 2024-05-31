@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TimerButton from "./TimerButton";
 import { generateBoard } from "../scripts/diceGenerator";
 import { DiceGrid } from "./DiceGrid";
+import InputWord from "./InputWord";
 
 const MILLISECONDS_IN_A_SECOND = 1000;
 const MAX_TIME = 60;
@@ -49,6 +50,7 @@ const BoardContainer = () => {
       <div className="board">
         <DiceGrid letters={boardLetters} />
       </div>
+      <InputWord />
     </div>
   );
 };
