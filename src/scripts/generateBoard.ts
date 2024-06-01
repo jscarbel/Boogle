@@ -1,4 +1,4 @@
-import { DICE_POSSIBILITIES } from "../constants";
+import { DICE_POSSIBILITIES, BOARD_LENGTH } from "../constants";
 
 const shuffleDice = (): void => {
   for (
@@ -27,13 +27,15 @@ export const generateBoard = (): string[][] => {
   const board: string[][] = [];
   let diceIndex = 0;
 
-  for (let row = 0; row < 4; row++) {
+  for (let row = 0; row < BOARD_LENGTH; row++) {
     const diceRow: string[] = [];
-    for (let col = 0; col < 4; col++) {
+    for (let col = 0; col < BOARD_LENGTH; col++) {
       diceRow.push(getRandomLetterFromDice(DICE_POSSIBILITIES[diceIndex]));
+
       diceIndex++;
     }
     board.push(diceRow);
   }
+
   return board;
 };

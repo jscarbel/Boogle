@@ -3,12 +3,12 @@ import TimerButton from "./TimerButton";
 import { generateBoard } from "../scripts/generateBoard";
 import { DiceGrid } from "./DiceGrid";
 import InputWord from "./InputWord";
-import { generateGraphFromLetters } from "../scripts/generateGraphFromLetters";
+import { checkIfWordIsOnBoard } from "../scripts/checkIfWordIsOnBoard";
 import { MILLISECONDS_IN_A_SECOND, MAX_TIME } from "../constants";
 
 const BoardContainer = () => {
-  const [time, setTime] = useState<number>(0);
-  const [isTiming, setIsTiming] = useState<boolean>(false);
+  const [time, setTime] = useState(0);
+  const [isTiming, setIsTiming] = useState(false);
   const [boardLetters, setBoardLetters] = useState<string[][]>(generateBoard());
 
   let timer: NodeJS.Timeout | null = null;
