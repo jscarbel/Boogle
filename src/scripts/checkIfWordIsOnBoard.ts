@@ -21,8 +21,8 @@ export const checkIfWordIsOnBoard = (
     if (currentLetterOnBoard !== targetLetter) return;
 
     // check if we've already used the word
-    const currentBoardCoordinates = `${rowIndex},${colIndex}`;
     const foundCoordinates = new Set([...usedCoordinates]);
+    const currentBoardCoordinates = `${rowIndex},${colIndex}`;
     if (foundCoordinates.has(currentBoardCoordinates)) return;
 
     if (isWordOnBoard) return;
@@ -51,6 +51,9 @@ export const checkIfWordIsOnBoard = (
 
   board.forEach((row, rowIndex) => {
     row.forEach((_letter, letterIndex) => {
+      if (isWordOnBoard) {
+        return;
+      }
       traverseBoard(rowIndex, letterIndex, 0, new Set());
     });
   });
