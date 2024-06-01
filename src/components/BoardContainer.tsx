@@ -10,6 +10,13 @@ const BoardContainer = () => {
   const [time, setTime] = useState(0);
   const [isTiming, setIsTiming] = useState(false);
   const [boardLetters, setBoardLetters] = useState<string[][]>(generateBoard());
+  const [wordSet, setWordSet] = useState<Set<string>>(new Set());
+
+  const handleWordAddition = (word: string) => {
+    const result = checkIfWordIsOnBoard(boardLetters, word);
+    console.log(result);
+    setWordSet((prevWords) => new Set(prevWords.add(word)));
+  };
 
   let timer: NodeJS.Timeout | null = null;
 
@@ -49,7 +56,7 @@ const BoardContainer = () => {
       <div className="board">
         <DiceGrid letters={boardLetters} />
       </div>
-      <InputWord />
+      <InputWord wordSet={wordSet} onWordChange={handleWordAddition} />
     </div>
   );
 };

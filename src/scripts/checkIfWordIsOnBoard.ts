@@ -2,6 +2,7 @@ export const checkIfWordIsOnBoard = (
   board: string[][],
   word: string
 ): boolean => {
+  word = word.toUpperCase();
   let isWordOnBoard = false;
 
   const traverseBoard = (
@@ -21,8 +22,12 @@ export const checkIfWordIsOnBoard = (
 
     // check if we've already used the word
     const currentBoardCoordinates = `${rowIndex},${colIndex}`;
-    if (usedCoordinates.has(currentBoardCoordinates)) return;
+    const foundCoordinates = new Set([...usedCoordinates]);
+    if (foundCoordinates.has(currentBoardCoordinates)) return;
 
+    if (isWordOnBoard) return;
+
+    // yay
     const isWordComplete = wordIndex === word.length - 1;
     if (isWordComplete) {
       isWordOnBoard = true;
@@ -30,8 +35,25 @@ export const checkIfWordIsOnBoard = (
     }
 
     // keep track that we've visited this letter
-    usedCoordinates.add(currentBoardCoordinates);
+    foundCoordinates.add(currentBoardCoordinates);
+
+    wordIndex++;
+
+    traverseBoard(rowIndex - 1, colIndex - 1, wordIndex, foundCoordinates);
+    traverseBoard(rowIndex - 1, colIndex, wordIndex, foundCoordinates);
+    traverseBoard(rowIndex - 1, colIndex + 1, wordIndex, foundCoordinates);
+    traverseBoard(rowIndex, colIndex + 1, wordIndex, foundCoordinates);
+    traverseBoard(rowIndex + 1, colIndex + 1, wordIndex, foundCoordinates);
+    traverseBoard(rowIndex + 1, colIndex, wordIndex, foundCoordinates);
+    traverseBoard(rowIndex + 1, colIndex - 1, wordIndex, foundCoordinates);
+    traverseBoard(rowIndex, colIndex - 1, wordIndex, foundCoordinates);
   };
+
+  board.forEach((row, rowIndex) => {
+    row.forEach((_letter, letterIndex) => {
+      traverseBoard(rowIndex, letterIndex, 0, new Set());
+    });
+  });
 
   return isWordOnBoard;
 };
