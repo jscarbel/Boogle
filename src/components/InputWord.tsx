@@ -23,19 +23,23 @@ const InputWord = ({
     }
   };
   return (
-    <div className="input-word">
-      <input
-        type="text"
-        value={currentWord}
-        onChange={handleInputChange}
-        placeholder="Enter a word"
-      />
-      <button onClick={handleWordSubmit}>Add Word</button>
-      <ul>
+    <div className="word-list-container">
+      <div className="word-list">
         {Array.from(wordSet).map((word, index) => (
-          <li key={index}>{word}</li>
+          <div key={index} className="word-item">
+            {word}
+          </div>
         ))}
-      </ul>
+      </div>
+      <div className="input-word">
+        <input
+          type="text"
+          value={currentWord}
+          onChange={handleInputChange}
+          placeholder="Enter a word"
+        />
+        <button onClick={handleWordSubmit}>Add Word</button>
+      </div>
     </div>
   );
 };

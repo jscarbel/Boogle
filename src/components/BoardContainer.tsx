@@ -55,8 +55,8 @@ const BoardContainer = () => {
       <TimerButton onClick={handleTimerChange} label={timerLabel} />
       <div className="board">
         <DiceGrid letters={boardLetters} />
+        <InputWord wordSet={wordSet} onWordChange={handleWordAddition} />
       </div>
-      <InputWord wordSet={wordSet} onWordChange={handleWordAddition} />
     </div>
   );
 };
