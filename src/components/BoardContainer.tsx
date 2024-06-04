@@ -43,6 +43,7 @@ const BoardContainer = () => {
     setIsTiming(!isTiming);
     if (!isTiming) {
       setBoardLetters(generateBoard());
+      setWordSet(new Set());
     }
   };
 
