@@ -9,17 +9,20 @@ const InputWord = ({
   onWordChange: Function;
 }) => {
   const [currentWord, setCurrentWord] = useState<string>("");
+  const [isValidWord, setIsValidWord] = useState<Boolean>(true);
 
   const handleInputChange = (event) => {
     const isWord = wordsDictionary.has(event.target.value);
     setCurrentWord(event.target.value);
+    setIsValidWord(isWord);
   };
 
   const handleWordSubmit = (event) => {
     event.preventDefault();
-    if (currentWord !== "") {
+    if (currentWord !== "" && isValidWord) {
       onWordChange(currentWord);
       setCurrentWord("");
+      setIsValidWord(true);
     }
   };
   return (
