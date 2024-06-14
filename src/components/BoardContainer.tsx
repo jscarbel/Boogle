@@ -5,6 +5,7 @@ import { DiceGrid } from "./DiceGrid";
 import InputWord from "./InputWord";
 import { checkIfWordIsOnBoard } from "../scripts/checkIfWordIsOnBoard";
 import { MILLISECONDS_IN_A_SECOND, MAX_TIME } from "../constants";
+import calculateScore from "./calculateScore";
 
 const BoardContainer = () => {
   const [time, setTime] = useState(0);
@@ -56,7 +57,11 @@ const BoardContainer = () => {
       <TimerButton onClick={handleTimerChange} label={timerLabel} />
       <div className="board">
         <DiceGrid letters={boardLetters} />
-        <InputWord wordSet={wordSet} onWordChange={handleWordAddition} />
+        <InputWord
+          wordSet={wordSet}
+          onWordChange={handleWordAddition}
+          onScoreChange={calculateScore}
+        />
       </div>
     </div>
   );

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { wordsDictionary } from "../words-dictionary";
+import calculateScore from "./calculateScore";
 
 const InputWord = ({
   wordSet,
   onWordChange,
+  onScoreChange,
 }: {
   wordSet: Set<string>;
   onWordChange: Function;
+  onScoreChange: Function;
 }) => {
   const [currentWord, setCurrentWord] = useState<string>("");
   const [isValidWord, setIsValidWord] = useState<Boolean>(true);
@@ -21,6 +24,8 @@ const InputWord = ({
     event.preventDefault();
     if (currentWord !== "" && isValidWord) {
       onWordChange(currentWord);
+      onScoreChange(calculateScore(currentWord));
+      console.log(calculateScore(currentWord), "score here");
       setCurrentWord("");
       setIsValidWord(true);
     }
