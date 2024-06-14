@@ -1,35 +1,30 @@
 import { useState } from "react";
 import { wordsDictionary } from "../words-dictionary";
-import calculateScore from "./calculateScore";
+import calculateScore from "../scripts/calculateScore";
 
 const InputWord = ({
   wordSet,
-  onWordChange,
-  onScoreChange,
+  onWordSubmit,
 }: {
   wordSet: Set<string>;
-  onWordChange: Function;
-  onScoreChange: Function;
+  onWordSubmit: Function;
 }) => {
   const [currentWord, setCurrentWord] = useState<string>("");
-  const [isValidWord, setIsValidWord] = useState<Boolean>(true);
 
   const handleInputChange = (event) => {
-    const isWord = wordsDictionary.has(event.target.value);
     setCurrentWord(event.target.value);
-    setIsValidWord(isWord);
   };
 
   const handleWordSubmit = (event) => {
     event.preventDefault();
-    if (currentWord !== "" && isValidWord) {
-      onWordChange(currentWord);
-      onScoreChange(calculateScore(currentWord));
-      console.log(calculateScore(currentWord), "score here");
-      setCurrentWord("");
-      setIsValidWord(true);
-    }
+    if (currentWord.length < 3) return;
+
+    const isWordInDictionary = wordsDictionary.has(currentWord);
+    if (!isWordInDictionary) return;
+
+    onWordSubmit(currentWord);
   };
+
   return (
     <div className="word-list-container">
       <div className="word-list">
