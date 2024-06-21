@@ -15,6 +15,13 @@ const InputWord = ({
     setCurrentWord(event.target.value);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleWordSubmit(event);
+    }
+  };
+
   const handleWordSubmit = (event) => {
     event.preventDefault();
     if (currentWord.length < 3) return;
@@ -23,6 +30,7 @@ const InputWord = ({
     if (!isWordInDictionary) return;
 
     onWordSubmit(currentWord);
+    setCurrentWord("");
   };
 
   return (
@@ -38,6 +46,7 @@ const InputWord = ({
         <input
           type="text"
           value={currentWord}
+          onKeyDown={handleKeyPress}
           onChange={handleInputChange}
           placeholder="Enter a word"
         />
