@@ -6,6 +6,7 @@ import InputWord from "./InputWord";
 import { checkIfWordIsOnBoard } from "../scripts/checkIfWordIsOnBoard";
 import { MILLISECONDS_IN_A_SECOND, MAX_TIME } from "../constants";
 import calculateScore from "../scripts/calculateScore";
+import { Modal } from "./ModalBox";
 
 const BoardContainer = () => {
   const [time, setTime] = useState(0);
@@ -13,6 +14,7 @@ const BoardContainer = () => {
   const [boardLetters, setBoardLetters] = useState<string[][]>(generateBoard());
   const [wordSet, setWordSet] = useState<Set<string>>(new Set());
   const [totalScore, setTotalScore] = useState<number>(0);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const handleWordSubmission = (word: string) => {
     if (wordSet.has(word)) return;
@@ -67,6 +69,10 @@ const BoardContainer = () => {
         <DiceGrid letters={boardLetters} />
         <InputWord wordSet={wordSet} onWordSubmit={handleWordSubmission} />
       </div>
+      <button className="open-modal" onClick={() => setIsVisible(true)}>
+        open modal
+      </button>
+      <Modal isVisible={isVisible} onClose={setIsVisible} />
     </div>
   );
 };
