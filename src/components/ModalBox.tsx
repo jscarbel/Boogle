@@ -1,5 +1,3 @@
-import BoardContainer from "./BoardContainer";
-
 interface ModalProps {
   onClose: (isVisible: boolean) => void;
   isVisible: boolean;
