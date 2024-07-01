@@ -62,9 +62,11 @@ const BoardContainer = () => {
   return (
     <div className="board-container">
       <h1>Boggle</h1>
-      <h3>Current time: {time}</h3>
-      <h3>Current score: {totalScore}</h3>
       <TimerButton onClick={handleTimerChange} label={timerLabel} />
+      <div className="score-time-container">
+        <h3>Current time: {time}</h3>
+        <h3>Current score: {totalScore}</h3>
+      </div>
       <div className="board">
         <DiceGrid letters={boardLetters} />
         <InputWord wordSet={wordSet} onWordSubmit={handleWordSubmission} />
