@@ -74,7 +74,11 @@ const BoardContainer = () => {
       <button className="open-modal" onClick={() => setIsVisible(true)}>
         open modal
       </button>
-      <Modal isVisible={isVisible} onClose={setIsVisible} />
+      <Modal
+        isVisible={isVisible}
+        onClose={setIsVisible}
+        totalScore={totalScore}
+      />
     </div>
   );
 };
