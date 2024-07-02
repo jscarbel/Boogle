@@ -36,6 +36,7 @@ const BoardContainer = () => {
           if (prevTime >= MAX_TIME) {
             clearInterval(timer);
             setIsTiming(false);
+            setIsVisible(true);
             return MAX_TIME;
           }
           return prevTime + 1;
@@ -54,6 +55,7 @@ const BoardContainer = () => {
       setBoardLetters(generateBoard());
       setWordSet(new Set());
       setTotalScore(0);
+      setIsVisible(false);
     }
   };
 
@@ -71,9 +73,9 @@ const BoardContainer = () => {
         <DiceGrid letters={boardLetters} />
         <InputWord wordSet={wordSet} onWordSubmit={handleWordSubmission} />
       </div>
-      <button className="open-modal" onClick={() => setIsVisible(true)}>
+      {/* <button className="open-modal" onClick={() => setIsVisible(true)}>
         open modal
-      </button>
+      </button> */}
       <Modal
         isVisible={isVisible}
         onClose={setIsVisible}
