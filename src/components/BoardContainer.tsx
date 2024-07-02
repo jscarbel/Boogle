@@ -73,9 +73,6 @@ const BoardContainer = () => {
         <DiceGrid letters={boardLetters} />
         <InputWord wordSet={wordSet} onWordSubmit={handleWordSubmission} />
       </div>
-      {/* <button className="open-modal" onClick={() => setIsVisible(true)}>
-        open modal
-      </button> */}
       <Modal
         isVisible={isVisible}
         onClose={setIsVisible}
