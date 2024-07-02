@@ -71,7 +71,9 @@ const BoardContainer = () => {
         <h3>Current score: {totalScore}</h3>
       </div>
       <div className="board">
-        <DiceGrid letters={boardLetters} />
+        <div className="dice-container">
+          <DiceGrid letters={boardLetters} />
+        </div>
         <InputWord wordSet={wordSet} onWordSubmit={handleWordSubmission} />
       </div>
       <Modal
