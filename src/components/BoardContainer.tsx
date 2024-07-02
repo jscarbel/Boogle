@@ -26,6 +26,7 @@ const BoardContainer = () => {
     const currentWordScore = calculateScore(word);
     setTotalScore((prevTotalScore) => currentWordScore + prevTotalScore);
   };
+  let totalWordsFound = wordSet.size;
 
   let timer: NodeJS.Timeout | null = null;
 
@@ -77,6 +78,7 @@ const BoardContainer = () => {
         isVisible={isVisible}
         onClose={setIsVisible}
         totalScore={totalScore}
+        totalWordsFound={totalWordsFound}
       />
     </div>
   );
