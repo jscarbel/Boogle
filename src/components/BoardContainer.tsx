@@ -16,21 +16,8 @@ const BoardContainer = () => {
   const [totalScore, setTotalScore] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const handleWordSubmission = (word: string) => {
-    if (wordSet.has(word)) return;
-
-    const isWordOnBoard: boolean = checkIfWordIsOnBoard(boardLetters, word);
-    if (!isWordOnBoard) return;
-
-    wordSet.add(word);
-    const currentWordScore = calculateScore(word);
-    setTotalScore((prevTotalScore) => currentWordScore + prevTotalScore);
-  };
-  let totalWordsFound = wordSet.size;
-
-  let timer: NodeJS.Timeout | null = null;
-
   useEffect(() => {
+    let timer: NodeJS.Timeout | null = null;
     if (isTiming) {
       timer = setInterval(() => {
         setTime((prevTime) => {
@@ -49,6 +36,18 @@ const BoardContainer = () => {
     }
     return () => clearInterval(timer);
   }, [isTiming]);
+
+  const handleWordSubmission = (word: string) => {
+    if (wordSet.has(word)) return;
+
+    const isWordOnBoard: boolean = checkIfWordIsOnBoard(boardLetters, word);
+    if (!isWordOnBoard) return;
+
+    wordSet.add(word);
+    const currentWordScore = calculateScore(word);
+    setTotalScore((prevTotalScore) => currentWordScore + prevTotalScore);
+  };
+  let totalWordsFound = wordSet.size;
 
   const handleTimerChange = () => {
     setIsTiming(!isTiming);
