@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { wordsDictionary } from "../words-dictionary";
-import calculateScore from "../scripts/calculateScore";
 
 const InputWord = ({
   wordSet,
