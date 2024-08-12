@@ -17,7 +17,7 @@ export const Form = ({
     if (error) return;
     const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
     if (typeof baseUrl !== "string") return;
-    await fetch(`${baseUrl}score`, {
+    await fetch(`${baseUrl}/score`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
