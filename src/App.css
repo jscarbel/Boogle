@@ -111,6 +111,12 @@
   color: #ff5722;
 }
 
+.disabled {
+  pointer-events: none;
+  color: #555;
+  background-color: #e0e0e0;
+}
+
 .input-word {
   display: flex;
   flex-direction: column;
