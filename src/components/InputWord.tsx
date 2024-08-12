@@ -36,7 +36,7 @@ const InputWord = ({
     <div className="word-list-container">
       <div className="word-list">
         {Array.from(wordSet).map((word, index) => (
-          <div key={index} className="word-item">
+          <div key={`${word}-${index}`} className="word-item">
             {word}
           </div>
         ))}

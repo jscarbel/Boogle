@@ -8,6 +8,14 @@ import { MILLISECONDS_IN_A_SECOND, MAX_TIME } from "../constants";
 import calculateScore from "../scripts/calculateScore";
 import { Modal } from "./ModalBox";
 
+type Scores = {
+  id: number;
+  createAt: string;
+  userName: string;
+  wordCount: number;
+  score: number;
+}[];
+
 const BoardContainer = () => {
   const [time, setTime] = useState(0);
   const [isTiming, setIsTiming] = useState(false);
@@ -15,6 +23,32 @@ const BoardContainer = () => {
   const [wordSet, setWordSet] = useState<Set<string>>(new Set());
   const [totalScore, setTotalScore] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isLoadingScores, setIsLoadingScores] = useState<boolean>(false);
+
+  const [scores, setScores] = useState<Scores>([]);
+
+  const tenthHighestScore: number | undefined = scores[9]?.score;
+
+  useEffect(() => {
+    const backendUrl = "http://localhost:3001/scores";
+    setIsLoadingScores(true);
+    fetch(backendUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch scores.");
+        }
+        return response.json();
+      })
+      .then((parsedScores) => {
+        setScores(parsedScores);
+      })
+      .catch((error) => {
+        console.error("Error fetching scores:", error);
+      })
+      .finally(() => {
+        setIsLoadingScores(false);
+      });
+  }, [isVisible]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
@@ -80,7 +114,21 @@ const BoardContainer = () => {
         onClose={setIsVisible}
         totalScore={totalScore}
         totalWordsFound={totalWordsFound}
+        scoreToBeat={tenthHighestScore}
       />
+      <p>High Scores:</p>
+      {isLoadingScores
+        ? "loading..."
+        : scores.map((s) => (
+            <div key={s.id}>
+              <br />
+              userName: {s.userName}
+              <br />
+              score: {s.score}
+              <br />
+              wordCount: {s.wordCount}
+            </div>
+          ))}
     </div>
   );
 };
