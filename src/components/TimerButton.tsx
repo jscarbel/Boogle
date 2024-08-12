@@ -7,7 +7,11 @@ const TimerButton = ({
   onClick: MouseEventHandler<HTMLButtonElement>;
   label: string;
 }) => {
-  return <button onClick={onClick}>{label}</button>;
+  return (
+    <button className="button-primary" onClick={onClick}>
+      {label}
+    </button>
+  );
 };
 
 export default TimerButton;

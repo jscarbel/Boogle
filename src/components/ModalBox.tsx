@@ -22,18 +22,21 @@ export const Modal = ({
       <div className="modal-container">
         <h1 className="header-text">Game Over!</h1>
         <div className="modal-content">
-          {isHighScore && (
-            <Form
-              totalScore={totalScore}
-              wordCount={totalWordsFound}
-              onFormSubmit={() => onClose(false)}
-            />
-          )}
           <h3>Total score: {totalScore}</h3>
           <h3>Words found: {totalWordsFound}</h3>
         </div>
         <p className="modal-title">Well Done!</p>
-        <button className="modal-close-button" onClick={() => onClose(false)}>
+        {isHighScore && (
+          <Form
+            totalScore={totalScore}
+            wordCount={totalWordsFound}
+            onFormSubmit={() => onClose(false)}
+          />
+        )}
+        <button
+          className="modal-close-button button-secondary"
+          onClick={() => onClose(false)}
+        >
           close
         </button>
       </div>

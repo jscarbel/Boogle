@@ -52,22 +52,19 @@ export const Form = ({
   return (
     <form onSubmit={handleSubmit}>
       <span className="red block">{error}</span>
-      <label htmlFor="userName">
-        Enter your name:
-        <input
-          name="userName"
-          type="text"
-          value={userName}
-          onChange={(e) => handleInputChange(e.target.value)}
-        />
-      </label>
+      <label htmlFor="userName">Enter your name:</label>
+      <input
+        name="userName"
+        type="text"
+        value={userName}
+        onChange={(e) => handleInputChange(e.target.value)}
+      />
       <input
         type="submit"
-        className={loading ? "disabled" : ""}
+        className={`button-primary ${loading ? "disabled" : ""}`}
         disabled={loading}
-      >
-        {loading ? "Submitting..." : "submit"}
-      </input>
+        content={loading ? "Submitting..." : "submit"}
+      />
     </form>
   );
 };

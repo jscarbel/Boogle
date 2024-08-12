@@ -1,11 +1,15 @@
 import "./App.css";
 import BoardContainer from "./components/BoardContainer";
+import { OrangeBackground } from "./components/OrangeBackground";
 
 function App() {
   return (
-    <div className="App">
-      <BoardContainer />
-    </div>
+    <>
+      <OrangeBackground />
+      <div className="App">
+        <BoardContainer />
+      </div>
+    </>
   );
 }
 

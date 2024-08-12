@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 .App {
   text-align: center;
   display: flex;
@@ -5,9 +7,108 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ff9800, #ff5722);
-  font-family: "Arial", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
   padding: 20px;
+}
+
+.orange-background {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: -999;
+}
+
+/* Modern form styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #6200ea;
+  background-color: #fff;
+  outline: none;
+}
+
+/* Placeholder text styling */
+input::placeholder,
+textarea::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+/* Modern button styling */
+.button-primary {
+  padding: 12px 24px;
+  background-color: #088120;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-primary:hover {
+  background-color: #059400;
+  transform: translateY(-2px);
+}
+
+.button-primary:active {
+  background-color: #19a304;
+  transform: translateY(0);
+}
+
+.button-secondary {
+  padding: 12px 24px;
+  background-color: inherit;
+  color: #333;
+  border: solid;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-secondary:hover {
+  background-color: #d5d5d5;
+  transform: translateY(-2px);
+}
+
+.button-secondary:active {
+  background-color: #c0c0c0;
+  transform: translateY(0);
+}
+
+/* General form and button styling */
+form {
+  max-width: 500px;
+  margin: auto;
+}
+
+button {
+  margin-top: 16px;
+  display: inline-block;
+  width: auto;
 }
 
 .App-logo {
@@ -242,4 +343,31 @@ body::-ms-scrollbar-thumb {
 
 body::-ms-scrollbar-thumb:hover {
   background-color: #555;
+}
+
+.high-scores-container {
+  padding: 2em;
+  border-radius: 1em;
+  width: 90%;
+  margin: auto;
+  margin-top: 3em;
+  background-color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.username {
+  color: #024a00;
+  font-size: larger;
+}
+
+.scores-list {
+  margin: auto;
+}
+
+.text-left {
+  text-align: left;
 }

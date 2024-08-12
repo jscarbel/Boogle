@@ -49,7 +49,9 @@ const InputWord = ({
           onChange={handleInputChange}
           placeholder="Enter a word"
         />
-        <button onClick={handleWordSubmit}>Add Word</button>
+        <button className="button-primary" onClick={handleWordSubmit}>
+          + Add Word
+        </button>
       </div>
     </div>
   );

@@ -7,8 +7,9 @@ import { checkIfWordIsOnBoard } from "../scripts/checkIfWordIsOnBoard";
 import { MILLISECONDS_IN_A_SECOND, MAX_TIME } from "../constants";
 import calculateScore from "../scripts/calculateScore";
 import { Modal } from "./ModalBox";
+import { HighScoresContainer } from "./HighScoresContainer";
 
-type Scores = {
+export type Scores = {
   id: number;
   createAt: string;
   userName: string;
@@ -118,19 +119,11 @@ const BoardContainer = () => {
         totalWordsFound={totalWordsFound}
         scoreToBeat={tenthHighestScore}
       />
-      <p>High Scores:</p>
-      {isLoadingScores
-        ? "loading..."
-        : scores.map((s) => (
-            <div key={s.id}>
-              <br />
-              userName: {s.userName}
-              <br />
-              score: {s.score}
-              <br />
-              wordCount: {s.wordCount}
-            </div>
-          ))}
+      {isLoadingScores ? (
+        "loading high scores..."
+      ) : (
+        <HighScoresContainer scores={scores} />
+      )}
     </div>
   );
 };
