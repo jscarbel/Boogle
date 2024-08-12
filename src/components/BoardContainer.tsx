@@ -30,7 +30,9 @@ const BoardContainer = () => {
   const tenthHighestScore: number | undefined = scores[9]?.score;
 
   useEffect(() => {
-    const backendUrl = "http://localhost:3001/scores";
+    const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+    if (typeof baseUrl !== "string") return;
+    const backendUrl = `${baseUrl}/scores`;
     setIsLoadingScores(true);
     fetch(backendUrl)
       .then((response) => {

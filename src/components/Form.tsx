@@ -15,8 +15,9 @@ export const Form = ({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (error) return;
-
-    await fetch("http://localhost:3001/score", {
+    const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+    if (typeof baseUrl !== "string") return;
+    await fetch(`${baseUrl}score`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
