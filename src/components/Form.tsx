@@ -42,10 +42,11 @@ export const Form = ({
   };
 
   const handleInputChange = (val: string) => {
+    setUserName(val);
     if (!val) {
       setError("Username cannot be blank");
     } else {
-      setUserName(val);
+      setError("");
     }
   };
 
