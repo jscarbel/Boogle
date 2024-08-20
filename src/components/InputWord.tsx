@@ -36,9 +36,6 @@ const InputWord = ({
   const words = wordSet.values();
   useEffect(() => {
     if (wordListRef.current) {
-      console.log("Scrolling to bottom");
-      console.log("scrollHeight:", wordListRef.current.scrollHeight);
-      console.log("clientHeight:", wordListRef.current.clientHeight);
       wordListRef.current.scrollTop = wordListRef.current.scrollHeight;
     }
   }, [words]);
