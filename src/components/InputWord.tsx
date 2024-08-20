@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { wordsDictionary } from "../words-dictionary";
 
 const InputWord = ({
@@ -9,6 +9,7 @@ const InputWord = ({
   onWordSubmit: Function;
 }) => {
   const [currentWord, setCurrentWord] = useState<string>("");
+  const wordListRef = useRef<HTMLDivElement | null>(null);
 
   const handleInputChange = (event) => {
     setCurrentWord(event.target.value);
@@ -32,9 +33,19 @@ const InputWord = ({
     setCurrentWord("");
   };
 
+  const words = wordSet.values();
+  useEffect(() => {
+    if (wordListRef.current) {
+      console.log("Scrolling to bottom");
+      console.log("scrollHeight:", wordListRef.current.scrollHeight);
+      console.log("clientHeight:", wordListRef.current.clientHeight);
+      wordListRef.current.scrollTop = wordListRef.current.scrollHeight;
+    }
+  }, [words]);
+
   return (
     <div className="word-list-container">
-      <div className="word-list">
+      <div className="word-list" ref={wordListRef}>
         {Array.from(wordSet).map((word, index) => (
           <div key={`${word}-${index}`} className="word-item">
             {word}

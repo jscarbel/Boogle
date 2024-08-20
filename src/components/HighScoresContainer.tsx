@@ -7,7 +7,7 @@ export const HighScoresContainer = ({ scores }: { scores: Scores }) => {
       <ol className="scores-list">
         {scores.map((s) => {
           return (
-            <li className="text-left">
+            <li className="text-left" key={`hiscore${s.id}`}>
               <span className="username">{s.userName || "Anynomous"}</span>:{" "}
               {s.score} points, {s.wordCount} words
             </li>
