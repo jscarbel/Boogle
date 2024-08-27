@@ -20,3 +20,6 @@ export const DICE_POSSIBILITIES: string[] = [
   "HIMNQU",
   "HLNNRZ",
 ];
+
+const row: string[] = new Array(BOARD_LENGTH).fill("?");
+export const INITIAL_BOARD: string[][] = new Array(BOARD_LENGTH).fill(row);

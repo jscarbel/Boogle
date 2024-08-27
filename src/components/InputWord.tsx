@@ -1,18 +1,21 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { wordsDictionary } from "../words-dictionary";
 
 const InputWord = ({
   wordSet,
   onWordSubmit,
+  currentWord,
+  setCurrentWord,
 }: {
   wordSet: Set<string>;
   onWordSubmit: Function;
+  currentWord: string;
+  setCurrentWord: React.Dispatch<React.SetStateAction<string>>;
 }) => {
-  const [currentWord, setCurrentWord] = useState<string>("");
   const wordListRef = useRef<HTMLDivElement | null>(null);
 
   const handleInputChange = (event) => {
-    setCurrentWord(event.target.value);
+    setCurrentWord(event.target.value.toLowerCase());
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {

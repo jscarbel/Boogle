@@ -4,7 +4,11 @@ import { generateBoard } from "../scripts/generateBoard";
 import { DiceGrid } from "./DiceGrid";
 import InputWord from "./InputWord";
 import { checkIfWordIsOnBoard } from "../scripts/checkIfWordIsOnBoard";
-import { MILLISECONDS_IN_A_SECOND, MAX_TIME } from "../constants";
+import {
+  MILLISECONDS_IN_A_SECOND,
+  MAX_TIME,
+  INITIAL_BOARD,
+} from "../constants";
 import calculateScore from "../scripts/calculateScore";
 import { Modal } from "./ModalBox";
 import { HighScoresContainer } from "./HighScoresContainer";
@@ -20,13 +24,13 @@ export type Scores = {
 const BoardContainer = () => {
   const [time, setTime] = useState(0);
   const [isTiming, setIsTiming] = useState(false);
-  const [boardLetters, setBoardLetters] = useState<string[][]>(generateBoard());
+  const [boardLetters, setBoardLetters] = useState<string[][]>(INITIAL_BOARD);
   const [wordSet, setWordSet] = useState<Set<string>>(new Set());
   const [totalScore, setTotalScore] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isLoadingScores, setIsLoadingScores] = useState<boolean>(false);
-
   const [scores, setScores] = useState<Scores>([]);
+  const [currentWord, setCurrentWord] = useState<string>("");
 
   const tenthHighestScore: number | undefined = scores[9]?.score;
 
@@ -93,7 +97,16 @@ const BoardContainer = () => {
       setWordSet(new Set());
       setTotalScore(0);
       setIsVisible(false);
+      setCurrentWord("");
+    } else {
+      setBoardLetters(INITIAL_BOARD);
     }
+  };
+
+  const handleDiceClick = (letter: string) => {
+    if (letter === "?") return;
+
+    setCurrentWord((word) => `${word}${letter.toLowerCase()}`);
   };
 
   const timerLabel = isTiming ? "stop" : "start";
@@ -108,9 +121,14 @@ const BoardContainer = () => {
       </div>
       <div className="board">
         <div className="dice-container">
-          <DiceGrid letters={boardLetters} />
+          <DiceGrid letters={boardLetters} onDiceClick={handleDiceClick} />
         </div>
-        <InputWord wordSet={wordSet} onWordSubmit={handleWordSubmission} />
+        <InputWord
+          wordSet={wordSet}
+          onWordSubmit={handleWordSubmission}
+          currentWord={currentWord}
+          setCurrentWord={setCurrentWord}
+        />
       </div>
       <Modal
         isVisible={isVisible}
