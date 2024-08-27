@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import TimerButton from "./TimerButton";
 import { generateBoard } from "../scripts/generateBoard";
 import { DiceGrid } from "./DiceGrid";
@@ -64,8 +64,7 @@ const BoardContainer = () => {
         setTime((prevTime) => {
           if (prevTime >= MAX_TIME) {
             clearInterval(timer);
-            setIsTiming(false);
-            setIsVisible(true);
+            handleTimerStop();
             return MAX_TIME;
           }
           return prevTime + 1;
@@ -90,6 +89,12 @@ const BoardContainer = () => {
   };
   let totalWordsFound = wordSet.size;
 
+  const handleTimerStop = useCallback(() => {
+    setIsTiming(false);
+    setIsVisible(true);
+    setBoardLetters(INITIAL_BOARD);
+  }, []);
+
   const handleTimerChange = () => {
     setIsTiming(!isTiming);
     if (!isTiming) {
@@ -98,8 +103,6 @@ const BoardContainer = () => {
       setTotalScore(0);
       setIsVisible(false);
       setCurrentWord("");
-    } else {
-      setBoardLetters(INITIAL_BOARD);
     }
   };
 
