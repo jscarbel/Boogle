@@ -103,6 +103,8 @@ const BoardContainer = () => {
       setTotalScore(0);
       setIsVisible(false);
       setCurrentWord("");
+    } else {
+      setBoardLetters(INITIAL_BOARD);
     }
   };
 
