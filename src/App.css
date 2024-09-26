@@ -30,7 +30,7 @@ select {
   padding: 12px 16px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 3px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
   font-size: 16px;
@@ -280,6 +280,11 @@ button {
   font-family: "Arial", sans-serif;
   font-size: 1.1em;
   align-items: center;
+}
+
+.modal-input {
+  padding-left: 50px;
+  padding-right: 10px;
 }
 
 .score-time-container {
